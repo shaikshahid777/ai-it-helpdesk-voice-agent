@@ -1,0 +1,235 @@
+{
+  "name": "IT Helpdesk Voice Agent - Mock Tool APIs",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ithelpdesk/verify_employee",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "c4f6c41a-37bf-45c1-b230-2c1dfa824ce5",
+      "name": "verify_employee Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "8a5f7830-6f4c-4aec-8b4a-8dab81c711d9"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"status\": \"Verified\",\n  \"name\": \"Steve Miller\"\n}",
+        "options": {}
+      },
+      "id": "1e537643-a846-497b-bd9b-2ab77592d645",
+      "name": "verify_employee Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        224,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ithelpdesk/create_it_ticket",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "efdb26df-c6de-4592-a6d5-cd7bdcd25c78",
+      "name": "create_it_ticket Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        224
+      ],
+      "webhookId": "a831aa33-1282-4004-ab97-9b46679bde59"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"ticket_status\": \"success\",\n  \"ticket_id\": \"IT-1082\"\n}",
+        "options": {}
+      },
+      "id": "5d0eb396-46a1-46fb-af8d-aa8d80db4948",
+      "name": "create_it_ticket Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        224,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ithelpdesk/check_ticket_status",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "e483df18-8f26-4577-9b71-62b7d05d30cc",
+      "name": "check_ticket_status Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        448
+      ],
+      "webhookId": "a32219a1-28a6-40a4-8468-fdc362069fda"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"status\": \"In Progress\",\n  \"assignee\": \"Sarah Conner\"\n}",
+        "options": {}
+      },
+      "id": "aaae2f28-b2ca-41c0-9a0d-8aad6722304c",
+      "name": "check_ticket_status Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        224,
+        448
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ithelpdesk/escalate_case",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "3697f382-2e34-4f11-adcb-c8bfe22bc42d",
+      "name": "escalate_case Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        672
+      ],
+      "webhookId": "b54a0bdb-3659-4ebe-aac5-a0eba39c543c"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"status\": \"Escalated\",\n  \"target_queue\": \"Tier-2 Network\"\n}",
+        "options": {}
+      },
+      "id": "5a581573-693d-4ca7-a39b-7d7b624edfab",
+      "name": "escalate_case Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        224,
+        672
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ithelpdesk/send_confirmation",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "0298645f-d2a5-4323-912d-07b09c3bf071",
+      "name": "send_confirmation Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        896
+      ],
+      "webhookId": "dc175267-56fd-44de-b0c6-c1f6103e645b"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"status\": \"sent\",\n  \"channel\": \"email\"\n}",
+        "options": {}
+      },
+      "id": "ffd801af-841f-47ee-be94-8e22d5e3a9de",
+      "name": "send_confirmation Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        224,
+        896
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "verify_employee Webhook": {
+      "main": [
+        [
+          {
+            "node": "verify_employee Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "create_it_ticket Webhook": {
+      "main": [
+        [
+          {
+            "node": "create_it_ticket Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check_ticket_status Webhook": {
+      "main": [
+        [
+          {
+            "node": "check_ticket_status Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "escalate_case Webhook": {
+      "main": [
+        [
+          {
+            "node": "escalate_case Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "send_confirmation Webhook": {
+      "main": [
+        [
+          {
+            "node": "send_confirmation Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "5f16162d-72f1-44d8-ba37-da706ce3ddf5",
+  "meta": {
+    "instanceId": "201381d913fa9e78389f7093cb99cedc70c766251a500f897db19feccfda3bd0"
+  },
+  "nodeGroups": [],
+  "id": "GE73ShFEQTB6QFcD",
+  "tags": []
+}
